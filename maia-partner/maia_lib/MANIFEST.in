@@ -1,0 +1,6 @@
+include maia_lib/model_utils/maia/*.pb.gz
+include maia_lib/model_utils/stockfish/stockfish_14_x64_bmi2
+include tests/games/*.pgn
+include tests/games/*.pgn.bz2
+include README.md
+include requirements.txt

@@ -1,0 +1,36 @@
+
+syntax = "proto2";
+
+package maia;
+
+message IgnorableGameSet {
+    optional fixed32 num_games = 1;
+    repeated IgnorableGameInfo game_infos = 2;
+    repeated IgnorableMove moves = 3;
+}
+
+message IgnorableGameInfo {
+    optional string game_id = 1;
+    optional string white_player = 2;
+    optional string black_player = 3;
+    optional fixed32 white_elo = 4;
+    optional fixed32 black_elo = 5;
+    optional fixed32 num_ply = 6;
+    optional fixed32 timestamp = 7;
+    optional fixed32 start_time = 8;
+    optional fixed32 increment = 9;
+    //repeated float32 vector = 10; //*512
+}
+
+message IgnorableMove {
+    optional bool is_white = 1;
+    optional bool active_won = 2;
+    optional bool no_winner = 3;
+    optional bool ignore_move = 4;
+    optional fixed32 move_ply = 5;
+    optional string board = 6;
+    optional string move = 7;
+    optional fixed32 move_time = 8;
+    optional fixed32 pre_move_clock = 9;
+    optional fixed32 opp_clock = 10;
+}

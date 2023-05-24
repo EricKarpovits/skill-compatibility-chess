@@ -1,0 +1,27 @@
+
+syntax = "proto2";
+
+package maia;
+
+message Game {
+    optional string game_id = 1;
+    optional uint32 white_elo = 2;
+    optional uint32 black_elo = 3;
+    repeated Board boards = 4;
+}
+
+message Board {
+    optional string fen = 1;
+    optional uint32 ply = 2;
+    optional string move = 3;
+    optional int32 move_index = 4;
+    optional Node tree = 5;
+}
+
+message Node {
+    optional uint32 depth = 1;
+    optional float value = 2;
+    repeated float child_values = 3;
+    repeated string child_moves = 4;
+    repeated Node children = 5;
+}

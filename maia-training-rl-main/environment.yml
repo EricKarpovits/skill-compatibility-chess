@@ -1,0 +1,43 @@
+name: maia-train
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - requests=2.22.0=py37_1
+  - tensorboard=2.3.0=py_0
+  - tensorboard-plugin-wit=1.7.0=pyh9f0ad1d_0
+  - tensorflow-base=2.1.0=gpu_py37h6c5654b_0
+  - tensorflow-gpu=2.1.0=h0d30ee6_0
+  - pip=20.0.2=py37_1
+  - setuptools=45.1.0
+  - jupyter=1.0.0
+  - numpy=1.20.1
+  - pip:
+    - humanize==2.4.0
+    - matplotlib==3.2.1
+    - natsort==7.0.1
+    - pandas==1.0.3
+    - psycopg2-binary==2.8.6
+    - pyinquirer==1.0.3
+    - python-chess==0.30.1
+    - pytz==2019.3
+    - regex==2020.10.23
+    - scikit-learn==0.24.0
+    - seaborn==0.11.1
+    - sqlalchemy==1.4.4
+    - tensorboardx==2.0
+    - tensorflow==2.3.1
+    - torch==1.8.1
+    - torchaudio==0.8.1
+    - torchvision==0.9.1
+    - pygit2==1.5.0
+    - wandb==0.10.24
+    - pymongo==3.11.3
+    - torchsummary==1.5.1
+    - einops==0.3.0
+    - natsort==7.0.1
+
+
+
+prefix: /anaconda/envs/maia
+

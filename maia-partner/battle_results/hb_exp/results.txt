@@ -1,0 +1,30 @@
+teams: ['m11s53', 'm11exp']
+expanded results: defaultdict(<function scorear at 0x7f86072750d0>, {'s53exp': [3, 9, 4]})
+matrix results:
+[[[[0 0 0]
+   [0 0 0]
+   [0 0 0]]
+
+  [[1 0 0]
+   [0 1 3]
+   [1 0 2]]]
+
+
+ [[[0 0 0]
+   [0 0 0]
+   [0 0 0]]
+
+  [[0 0 0]
+   [0 0 0]
+   [0 0 0]]]]
+simple results:
+[[ 0 -3]
+ [ 3  0]]
+game_totals: 
+[[ 0 16]
+ [16  0]]
+pre_totals:
+[[ 0 22]
+ [ 0  0]]
+metrics:
+[1.0, 1.0]valaf: [nan, 0.0] valafen: [nan, 0.0]
