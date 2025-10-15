@@ -130,11 +130,11 @@ def play(white, black,plystring):
         values.append(result.info['score'].white().score(mate_score=100000))
     ok=board.outcome().winner
     plystring=plystring[0:numplies]
-    if(ok==None):
+    if(ok==None): # draw
         winner=0
-    elif(ok):
-        winner=1
-    else:
+    elif(ok): # win 
+        winner=1 
+    else: # loss
         winner=-1
     curgame['winner']=winner
     curgame['length']=numplies
@@ -168,12 +168,13 @@ def worker(partner1_name, partner2_name, partner1_weights, partner2_weights,i,q,
     #print(plystring[0:10])
     #open(name_of_run+'/trash'+str(i), 'a').close()
     #sys.stderr = open(name_of_run+'/trash'+str(i), 'w')
-    maiay=agent('m11',["lc0" , "--temperature=0", "--weights=models/maia-1100.pb.gz","--backend-opts=gpu="+str((i)%4) ],1)
-    partnery=agent(partner1_name,["lc0" , "--weights="+partner1_weights,"--backend-opts=gpu="+str((i+1)%4)],1500)   
+    lc0_path = "/ada1/u/erickarp/chess/lc0/build/release/lc0"
+    maiay=agent('m11',[lc0_path , "--temperature=0", "--weights=models/maia-1100.pb.gz","--backend-opts=gpu="+str((i)%4) ],1)
+    partnery=agent(partner1_name,[lc0_path , "--weights="+partner1_weights,"--backend-opts=gpu="+str((i+1)%4)],1500)   
     team1=team(maiay,partnery)
 
-    maiay=agent('m11',["lc0" , "--temperature=0", "--weights=models/maia-1100.pb.gz","--backend-opts=gpu="+str((i+2)%4) ],1)
-    partnery=agent(partner2_name,["lc0" , "--weights="+partner2_weights,"--backend-opts=gpu="+str((i+3)%4)],1500)   
+    maiay=agent('m11',[lc0_path , "--temperature=0", "--weights=models/maia-1100.pb.gz","--backend-opts=gpu="+str((i+2)%4) ],1)
+    partnery=agent(partner2_name,[lc0_path , "--weights="+partner2_weights,"--backend-opts=gpu="+str((i+3)%4)],1500)   
     team2=team(maiay,partnery)
 
     #neutral=play(team1,team1,plystring)
@@ -234,10 +235,15 @@ def controller(num_proc):
         proc_ar.append(p)
         nowar.append((now,ind))
         p.start()
+    
+    MAX_GAMES = 1000
+    total_games = 0
     while(True):
         for j in range(num_proc):
             if(not proc_ar[j].is_alive()):
                 res=q.get()
+                total_games += 2
+                print("total number of games played so far: ", total_games)
                 if(random.uniform(0,1)<0.01):
                     print(res)
                 #print(res[0]['pgn'])
@@ -306,9 +312,9 @@ def controller(num_proc):
 
 
 
-name_of_run="battle_results/"+"stt_tree+att"
+name_of_run="battle_results/"+"stt_att"
 os.makedirs(name_of_run,exist_ok=True)
-partner_names=['s53','tree','att']
+partner_names=['s53','att']
 #for i in range(1,2):
 #    for j in range(8):
 #        partner_names.append('rigdb'+str(1+i)+'g1rate4'+'v'+str(j+1))
@@ -316,7 +322,7 @@ print(partner_names)
 
 weight_files=[
 'models/128x10-t60-2-5300.pb.gz',
-'models/maia-1100.pb.gz',
+# 'models/maia-1100.pb.gz',
 'models/att_t.gz'
 ]
 

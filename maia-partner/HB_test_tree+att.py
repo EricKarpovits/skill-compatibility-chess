@@ -428,7 +428,7 @@ def controller(num_proc):
 name_of_run="battle_results/"+"hb_tree+att"
 os.makedirs(name_of_run,exist_ok=True)
 #copyfile('handmatch.py', name_of_run+'/handmatch.py')
-partner_names=['s53','tree','att']
+partner_names=['s53','att']
 #for i in range(1,2):
 #    for j in range(8):
 #        partner_names.append('rigdb'+str(1+i)+'g1rate4'+'v'+str(j+1))
@@ -436,7 +436,6 @@ print(partner_names)
 
 weight_files=[
 'models/128x10-t60-2-5300.pb.gz',
-'models/maia-1100.pb.gz',
 'models/att_h.gz'
 ]
 
